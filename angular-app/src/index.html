@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YTS Test App</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script type="application/javascript">
+    // https://stackoverflow.com/questions/51380166/angular-6-browser-crypto-js3-uncaught-referenceerror-global-is-not-defined/51380307
+    var global = window;
+
+    window.onload = function () {
+      document.body.style.backgroundImage = "url('/assets/img/pattern" + (Math.floor(Math.random() * 4) + 1) + ".jpg')";
+    }
+  </script>
+</head>
+<body>
+<app-root></app-root>
+</body>
+</html>

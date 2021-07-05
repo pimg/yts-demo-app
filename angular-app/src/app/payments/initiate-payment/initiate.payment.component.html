@@ -1,0 +1,31 @@
+<div class="form-group">
+  <label for="paymentAmount">Amount</label>
+  <input type="text" id="paymentAmount" [formControl]="amountControl" class="form-control" maxlength="10"
+         style="width: 150px">
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="text" class="form-control" id="amount" maxlength="10" style="width: 150px">
+  </div>
+  <div class="form-group">
+    <label for="recipientName">Recipient name</label>
+    <input type="text" class="form-control" id="recipientName" width="40" style="width: 350px">
+  </div>
+  <div class="form-group">
+    <label for="accountNumber">Account number</label>
+    <input type="text" class="form-control" id="accountNumber" width="40" style="width: 350px">
+  </div>
+  <div class="form-group">
+    <label for="name">Description</label>
+    <textarea class="form-control" id="name" maxlength="140" style="height: 70px; width: 550px"></textarea>
+  </div>
+  <button type="submit" class="btn btn-yts-action d-block mt-3">Pay</button>
+</form>
+
+
+<h1>blablabnla</h1>
+
+
+<app-dynamic-form *ngIf="fields" [fields]="fields"></app-dynamic-form>

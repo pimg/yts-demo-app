@@ -1,0 +1,44 @@
+<h3>Update {{modalContent.feedbackField.valueOf() == 0 ? 'category' : 'merchant'}}</h3>
+<p>
+  Update {{modalContent.feedbackField.valueOf() == 0 ? 'category' : 'merchant'}}
+  <b>{{modalContent.transaction.transaction.enrichment.merchant.name}}</b>
+</p>
+
+<form class="form-group" #merchantUpdateForm="ngForm" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="new-merchant-name">New merchant</label>
+    <input id="new-merchant-name" name="name" class="form-control"
+           [(ngModel)]="newMerchant.value" #merchant="ngModel" required minlength="2" maxlength="40">
+    <div *ngIf="merchant.invalid && !merchant.pristine"
+         class="alert alert-danger">
+
+      <div *ngIf="merchant.errors.required">
+        Please fill out a merchant name
+      </div>
+      <div *ngIf="merchant.errors.minlength">
+        Name must be at least 2 characters long.
+      </div>
+    </div>
+  </div>
+  <div *ngIf="merchantSuggestions">
+    <div *ngFor="let merchantSuggestion of merchantSuggestions.merchantSuggestions">{{merchantSuggestion}}</div>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="update-similar"
+           (change)="toggleUpdateSimilar(modalContent.transaction)">
+    <label class="form-check-label" for="update-similar">Update similar transactions</label>
+  </div>
+  <div class="form-group" *ngIf="similarTransactions">
+    <div *ngFor="let similarTransactionGroup of similarTransactions.groups">
+      {{similarTransactionGroup.groupDescription}} ({{similarTransactionGroup.count}})
+    </div>
+    <div *ngIf="similarTransactions && similarTransactions.groups.length == 0">
+      No similar transactions found
+    </div>
+  </div>
+  <div *ngIf="!similarTransactions && showSimilarTransactions" class="text-center mt-3">
+    <img src="/assets/img/spinner.gif" width="36" height="30"/>
+  </div>
+
+  <button class="btn btn-yts-action medium" [disabled]="merchantUpdateForm.form.invalid">Update</button>
+</form>

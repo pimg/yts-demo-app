@@ -1,0 +1,15 @@
+<div *ngIf="testAppSite" class="yts-content-box">
+  <p>Yolt Technology Services doesn't share your data with anyone but you. We save your data in an
+    encrypted database and when you tell us to delete it, we wipe it. All of it.
+    <br/><br/>
+    <u>Read the details (to do)</u>
+    <br/><br/>
+
+    Do you agree to sharing your <b>{{testAppSite.site.name}}</b> data with Yolt Technology Services?
+  </p>
+  <div class="row">
+    <button type="submit" class="btn btn-yts-action d-block mt-3" (click)="saveConsentAndRedirectToBank()">I agree</button>&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="btn btn-yolt-cancel d-block mt-3" routerLink="/">Cancel</button>
+  </div>
+</div>
+

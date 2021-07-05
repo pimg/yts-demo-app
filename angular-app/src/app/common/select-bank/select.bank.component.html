@@ -1,0 +1,24 @@
+<div class="yts-content-box">
+  <b>Choose your bank</b>
+</div>
+
+<div *ngIf="!testAppSites" class="text-center mt-5">
+  <img src="/assets/img/spinner.gif" width="36" height="30"/>
+</div>
+
+<div class="list-group-flush yts-sites-list">
+  <a *ngFor="let testAppSite of testAppSites" class="list-group-item list-group-item-action"
+     (click)="selected(testAppSite)">
+    <div class="row">
+      <div class="col-2 col-md-1 my-auto">
+        <img class="mr-3 site-logo" src="{{'/api' + testAppSite.site.iconLink}}" width="40" height="40"/>
+      </div>
+      <div class="col-10 col-md-11 my-auto">
+        {{testAppSite.site.name}}
+        <div class="d-block small">
+          {{serviceType == 'ais' ? testAppSite.supportedAccountsLine : 'Payment types: ' + testAppSite.supportedPaymentAreasLine}}
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

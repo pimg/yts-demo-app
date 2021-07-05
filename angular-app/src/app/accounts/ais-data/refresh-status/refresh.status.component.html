@@ -1,0 +1,10 @@
+
+<span *ngIf="refreshableUserSiteItemView">
+  <span *ngIf="!refreshableUserSiteItemView.refreshableItem.hasRefreshStatus()"
+        class="pr-5 d-none d-md-inline"
+        title="{{refreshableUserSiteItemView.refreshableItem.lastDataFetchTime}}">Refreshed {{refreshableUserSiteItemView.refreshableItem.lastRefreshedLine}}</span>
+
+  <span *ngIf="refreshableUserSiteItemView.refreshableItem.hasRefreshStatus()"
+        class="pr-5 d-none d-md-inline blink">{{refreshableUserSiteItemView.refreshableItem.getRefreshStatus().isDataSaved() ? 'Enriching' : 'Refreshing'}}</span>
+</span>
+

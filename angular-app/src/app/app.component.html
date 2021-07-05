@@ -1,0 +1,17 @@
+<div class="container main pb-5" *ngIf="loggedIn">
+  <div class="row">
+    <div class="col mx-auto mb-4">
+      <img routerLink="/" style="cursor: pointer" src="/assets/img/yts-logo.svg">
+    </div>
+  </div>
+
+  <div class="yts-navbar mb-3">
+    <a routerLink="/" class="yts-navlink">Accounts</a>
+    <a routerLink="/pis" class="yts-navlink">Payments</a>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+
+
+

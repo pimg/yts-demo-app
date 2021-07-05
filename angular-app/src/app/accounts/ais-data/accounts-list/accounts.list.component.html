@@ -1,0 +1,5 @@
+<div *ngIf="accountListItems.length > 0" class="list-group-flush">
+  <div class="list-group-item list-group-item-action yts-clickable-row {{cssClass}}" *ngFor="let accountListItem of accountListItems">
+    <account-list-item [accountListItem]="accountListItem"></account-list-item>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+<div *ngIf="!dataLoaded()" class="text-center">
+  <img src="/assets/img/spinner.gif" width="36" height="30" class="mt-4"/>
+</div>
+
+<accounts-list *ngIf="dataLoaded()"
+               cssClass="fixed"
+               [accounts]="accountListItemSingleItemArray"></accounts-list>
+
+<div *ngIf="dataLoaded()" class="list-group-flush mb-5 yts-transactions-list">
+
+  <div class="list-group-item list-group-item-action yts-clickable-row"
+       *ngFor="let testAppTransaction of transactionPage.testAppTransactions">
+    <div class="row" (click)="toggleDetails(testAppTransaction)">
+      <div class="col-2">
+        {{testAppTransaction.transaction.date}}
+      </div>
+      <div class="col-md-5 col-sm-7 col-5 my-auto">
+        {{testAppTransaction.transaction.description}}<br/>
+        {{testAppTransaction.subLine}}
+      </div>
+      <div class="col-md-4 d-none d-md-block my-auto small text-right">
+        {{testAppTransaction.transaction.enrichment.merchant ? testAppTransaction.transaction.enrichment.merchant.name : ''}}
+        <br/>
+        {{testAppTransaction.transaction.enrichment ? testAppTransaction.transaction.enrichment.category ? testAppTransaction.transaction.enrichment.category : '' : ''}}
+      </div>
+      <div class="col-md-1 col-sm-3 col-5 text-right my-auto">
+        <span [ngClass]="{
+        'text-success' : testAppTransaction.transaction.amount >= 0,
+        'text-danger' : testAppTransaction.transaction.amount < 0
+        }">{{testAppTransaction.transaction.amount | number: '.2' }}</span>
+      </div>
+    </div>
+
+    <div class="row account-details"
+         [ngbCollapse]="expandedTransaction == null || expandedTransaction.transaction.id !== testAppTransaction.transaction.id">
+      <div class="col-12 mt-4 mb-4">
+        <table>
+          <tr>
+            <td class="pr-4">Id</td>
+            <td class="">{{testAppTransaction.transaction.id}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Bank transaction code</td>
+            <td class="">{{testAppTransaction.transaction.bankTransactionCode}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Bank specific fields</td>
+            <td class="">{{testAppTransaction.transaction.bankSpecific}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Booking date</td>
+            <td class="">{{testAppTransaction.transaction.bookingDate}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Value date</td>
+            <td class="">{{testAppTransaction.transaction.valueDate}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Date</td>
+            <td class="">{{testAppTransaction.transaction.date}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Creditor name</td>
+            <td
+              class="">{{testAppTransaction.transaction.creditor ? testAppTransaction.transaction.creditor.name : ''}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Creditor account number</td>
+            <td class="">{{testAppTransaction.creditorAccountNumber}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Debtor name</td>
+            <td
+              class="">{{testAppTransaction.transaction.debtor ? testAppTransaction.transaction.debtor.name : ''}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Debtor account number</td>
+            <td class="">{{testAppTransaction.debtorAccountNumber}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">End to end id</td>
+            <td class="">{{testAppTransaction.transaction.endToEndId}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">External id</td>
+            <td class="">{{testAppTransaction.transaction.externalId}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Exchange rate</td>
+            <td class="">{{testAppTransaction.transaction.exchangeRate}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Last updated time</td>
+            <td class="">{{testAppTransaction.transaction.lastUpdatedTime}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Original amount</td>
+            <td class="">{{testAppTransaction.transaction.originalAmount ?
+              testAppTransaction.transaction.originalAmount.currency + ' ' + testAppTransaction.transaction.originalAmount.amount : ''}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Purpose code</td>
+            <td class="">{{testAppTransaction.transaction.purposeCode}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Remittance information structured</td>
+            <td class="">{{testAppTransaction.transaction.remittanceInformationStructured}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Status</td>
+            <td class="">{{testAppTransaction.transaction.status}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Timestamp</td>
+            <td class="">{{testAppTransaction.transaction.timestamp}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Category</td>
+            <td
+              class="">{{testAppTransaction.transaction.enrichment ? testAppTransaction.transaction.enrichment.category : ''}}
+              <a href="#" class="update-link">Update</a>&nbsp;&nbsp;<a href="#" class="update-link">Update multiple</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="pr-4">Merchant</td>
+            <td>{{testAppTransaction.transaction.enrichment && testAppTransaction.transaction.enrichment.merchant ?
+              testAppTransaction.transaction.enrichment.merchant.name : ''}}
+              <img *ngIf="testAppTransaction.transaction.enrichment.merchant"
+                   src="/assets/img/edit.png"
+                   class="ml-1 mb-2" (click)="open(testAppTransaction)"/></td>
+          </tr>
+          <tr>
+            <td class="pr-4">Cycle</td>
+            <td>{{testAppTransaction.transaction.enrichment && testAppTransaction.transaction.enrichment.cycle ?
+              testAppTransaction.transaction.enrichment.cycle.cycleType : ''}}</td>
+          </tr>
+          <tr>
+            <td class="pr-4">Labels</td>
+            <td
+              class="">{{testAppTransaction.transaction.enrichment && testAppTransaction.transaction.enrichment.labels ?
+              testAppTransaction.transaction.enrichment.labels : ''}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

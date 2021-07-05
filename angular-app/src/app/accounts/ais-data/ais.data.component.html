@@ -1,0 +1,54 @@
+<div class="row mb-3 mt-4">
+  <div class="col-12 text-right">
+    <button *ngIf="userSites && userSites.length > 0" class="btn btn-yts-action mr-2 medium" (click)="refreshAll()">
+      <img src="/assets/img/refresh-light.png"/> Refresh all
+    </button>
+    <button class="btn btn-yts-action medium" routerLink="/ais/select-bank"><img src="/assets/img/plus-light.png"/>
+      Connect bank
+    </button>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active' : activeTab=='tab-accounts'}" aria-current="page"
+           routerLink="/ais/accounts"
+           [queryParams]="{account: selectedAccountListItem ? selectedAccountListItem.getAccountNumber() : inactiveAccountDetailsTabAccountNumber ? inactiveAccountDetailsTabAccountNumber : null}">
+          <img src="/assets/img/coins.png" class="mb-2 mr-2"/>Accounts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active' : activeTab=='tab-connections'}" aria-current="page"
+           routerLink="/ais/connections"
+           [queryParams]="{account: selectedAccountListItem ? selectedAccountListItem.getAccountNumber() : inactiveAccountDetailsTabAccountNumber ? inactiveAccountDetailsTabAccountNumber : null}">
+          <img src="/assets/img/connection.png" class="mb-2 mr-2"/>Connections</a>
+      </li>
+      <li class="nav-item" *ngIf="selectedAccountListItem">
+        <a class="nav-link" [ngClass]="{ 'active' : activeTab=='tab-account-details'}" aria-current="page"
+           [routerLink]="['/', 'ais', 'accounts', selectedAccountListItem.getAccountNumber()]">
+          <img src="/assets/img/coins.png" class="mb-2 mr-2"/>{{selectedAccountListItem.getAccountNumber()}}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="inactiveAccountDetailsTabAccountNumber && !selectedAccountListItem">
+        <a class="nav-link" aria-current="page"
+           [routerLink]="['/', 'ais', 'accounts', inactiveAccountDetailsTabAccountNumber]">
+          <img src="/assets/img/coins.png" class="mb-2 mr-2"/>{{inactiveAccountDetailsTabAccountNumber}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<accounts-list *ngIf="activeTab == 'tab-accounts' && accounts" [accounts]="accounts"></accounts-list>
+<user-sites-list *ngIf="activeTab == 'tab-connections' && userSites" [userSites]="userSites"></user-sites-list>
+<account-details *ngIf="selectedAccountListItem" [accountListItem]="selectedAccountListItem"></account-details>
+
+<div *ngIf="!accounts && !userSites" class="text-center mt-5">
+  <img src="/assets/img/spinner.gif" width="36" height="30"/>
+</div>
+
+<div *ngIf="userSites && userSites.length == 0" class="text-center mt-5 mb-5">
+  <span>It is very empty here</span><br/>
+  <span><a routerLink="/ais/select-bank">Connect your bank</a></span>
+</div>

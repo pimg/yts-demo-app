@@ -1,0 +1,28 @@
+<div class="row" [routerLink]="['/', 'ais', 'accounts', accountListItem.getAccountNumber()]">
+  <div class="col-1 d-none d-md-block">
+    <img
+      class="site-logo"
+      src="{{'/api/content/images/sites/icons/' + accountListItem.account.userSite.siteId + '.png'}}"
+      width="40"
+      height="40"/>
+  </div>
+  <div class="col-8 col-md-5 col-lg-4 my-auto">
+    {{accountListItem.account.name}}<br/>
+    <span class="small">{{accountListItem.getAccountNumber()}}</span>
+  </div>
+
+  <div class="col-2 col-md-2 d-none d-md-block my-auto small text-right">
+    <span class="small">{{accountListItem.getAccountType()}}</span>
+  </div>
+
+  <div class="col-3 d-none d-lg-block my-auto small text-right">
+    <refresh-status [refreshableUserSiteItemData]="accountListItem"></refresh-status>
+  </div>
+
+  <div class="col-4 col-md-4 col-lg-2 text-right my-auto balance">
+    {{accountListItem.account.currency|lowercase}} <span [ngClass]="{
+        'text-success' : accountListItem.account.balance >= 0,
+        'text-danger' : accountListItem.account.balance < 0
+        }">{{accountListItem.account.balance | number: '.2' }}</span>
+  </div>
+</div>

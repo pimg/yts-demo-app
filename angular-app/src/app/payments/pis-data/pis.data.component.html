@@ -1,0 +1,27 @@
+<div class="row mb-3 mt-4">
+  <div class="col-12 text-right">
+    <div ngbDropdown class="d-inline-block pr-2">
+      <button class="btn btn-yts-action" routerLink="/pis/select-bank"><img
+        src="/assets/img/plus-light.png"/>
+        Initiate payment
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active' : activeTab=='payments'}" aria-current="page"
+           routerLink="/pis/payments"><img
+          src="/assets/img/coins.png" class="mb-2 mr-2"/>Payments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active' : activeTab=='paylinks'}" aria-current="page"
+           routerLink="/pis/paylinks"><img
+          src="/assets/img/coins.png" class="mb-2 mr-2"/>Pay links</a>
+      </li>
+    </ul>
+  </div>
+</div>

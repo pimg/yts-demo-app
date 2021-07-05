@@ -1,0 +1,24 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{ISO8601}) %20.20([%thread]) %highlight(%-5level) %yellow(%50.50(%logger{36}:%line)) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.http.wire" level="warn" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.yolt.yfb.tester" level="info" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="com.yolt.yts.sdk" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

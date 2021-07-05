@@ -1,0 +1,34 @@
+<div *ngIf="!userSiteListItems" class="text-center">
+  <img src="/assets/img/spinner.gif" width="36" height="30" class="mt-4"/>
+</div>
+
+<div *ngIf="userSiteListItems && userSiteListItems.length > 0" class="list-group-flush mb-5">
+  <div class="list-group-item list-group-item-action" *ngFor="let userSiteListItem of userSiteListItems">
+    <div class="row">
+      <div class="col-md-1 col-sm-2 col-2">
+        <img
+          class="site-logo"
+          src="{{'/api/content/images/sites/icons/' + userSiteListItem.userSite.site.id + '.png'}}"
+          width="40"
+          height="40"/>
+      </div>
+      <div class="col-sm-7 col-md-5 col-5 my-auto">
+          {{userSiteListItem.userSite.site.name}}<br/>
+          <span class="small {{userSiteListItem.status().cssClass}}">{{userSiteListItem.status().statusLine}}</span>
+      </div>
+      <div class="col-md-6 col-sm-3 col-5 text-right small my-auto">
+        <refresh-status [refreshableUserSiteItemData]="userSiteListItem"></refresh-status>
+
+        <img *ngIf="userSiteListItem.userSite.connectionStatus === 'CONNECTED'"
+             class="user-sites-list-icon" title="Refresh data" src="/assets/img/refresh.png"
+             (click)="refresh(userSiteListItem)">
+
+        <img class="user-sites-list-icon" title="Update connection" src="/assets/img/connection.png"
+             (click)="updateConsent(userSiteListItem)">
+
+        <img class="user-sites-list-icon" title="Delete connection" src="/assets/img/delete.png"
+             (click)="delete(userSiteListItem)">
+      </div>
+    </div>
+  </div>
+</div>

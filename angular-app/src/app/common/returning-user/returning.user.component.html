@@ -1,0 +1,33 @@
+<div class="yts-content-box row">
+  <div class="col-xl-3 col-md-6 col-sm-6">Connecting to bank</div>
+  <div class="col-xl-3 col-md-6 col-sm-6">
+    <span *ngIf="createUserSiteResponse && createUserSiteResponse.userSite.connectionStatus == 'CONNECTED'"
+          class="green">CONNECTED</span>
+    <span *ngIf="createUserSiteResponse && createUserSiteResponse.userSite.connectionStatus == 'DISCONNECTED'"
+          class="red">FAILED</span>
+  </div>
+  <div class="w-100"></div>
+  <div class="col-xl-3 col-md-6 col-sm-6">Fetching your data</div>
+  <div class="col-xl-3 col-md-6 col-sm-6"
+       [ngClass]="{'green': dataFetchSuccess, 'red':!dataFetchSuccess }">{{dataFetchSuccess == null ? '' : dataFetchSuccess ? 'DONE' : 'FAILED'}}</div>
+  <div class="w-100"></div>
+  <div class="col-xl-3 col-md-6 col-sm-6">Enriching your data</div>
+  <div class="col-xl-3 col-md-6 col-sm-6"
+       [ngClass]="{'green': enrichmentSuccess, 'red':!enrichmentSuccess }">{{enrichmentSuccess == null ? '' : enrichmentSuccess ? 'DONE' : 'FAILED'}}</div>
+
+
+</div>
+
+<div class="yts-content-box" *ngIf="enrichmentSuccess">
+  Done!
+</div>
+
+
+
+
+
+
+
+
+
+
