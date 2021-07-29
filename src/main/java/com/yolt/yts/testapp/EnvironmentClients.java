@@ -13,22 +13,13 @@ import java.util.List;
  */
 public class EnvironmentClients {
 
-    private static final Client yoltTestClient = new Client(
-            "5aeafb70-6e5e-4cf5-a13e-3023846fc928",
-            "Yolt Test",
-            "yolt_external_client",
-            "2153d4e7-8217-46d1-bd5b-7ad96bdac308");
-
-    private static final Client yoltPisTestClinet = new Client(
-            "5aeafb70-6e5e-4cf5-a13e-3023846fc928",
-            "Yolt PIS Test",
-            "5046bd2dd5d11",
-            "b65e900b-505d-4dec-8643-399aa68c922a");
+    private static final Client yoltSandboxTestClient = new Client(
+            "e578287c-d4d3-4a5d-9995-83335a8f2ca2",
+            "Ruben client - rubenski@mail.com",
+            "e6d30f9a-e381-4a45-9af5-6c7d5babfd2f",
+            "d1f93cc0-cfb0-48ed-8b66-5a3819608575");
 
     public static List<EnvironmentClient> clients = new ArrayList<>(Arrays.asList(
-            new EnvironmentClient(Environment.team4, yoltTestClient),
-            new EnvironmentClient(Environment.team5, yoltTestClient),
-            new EnvironmentClient(Environment.acceptance, yoltTestClient),
-            new EnvironmentClient(Environment.production, yoltPisTestClinet)
+            new EnvironmentClient(Environment.sandbox, yoltSandboxTestClient)
     ));
 }

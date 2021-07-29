@@ -126,38 +126,13 @@
             </build>
         </profile>
         <profile>
-            <id>team4</id>
-            <properties>
-                <activatedProperties>team4</activatedProperties>
-            </properties>
-            <activation>
-                <!-- Since this app is used most frequently by YTS Core team, we select their team env by default -->
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>team5</id>
-            <properties>
-                <activatedProperties>team5</activatedProperties>
-            </properties>
-        </profile>
-        <profile>
-            <id>acceptance</id>
-            <properties>
-                <activatedProperties>acceptance</activatedProperties>
-            </properties>
-        </profile>
-        <profile>
             <id>sandbox</id>
             <properties>
                 <activatedProperties>sandbox</activatedProperties>
             </properties>
-        </profile>
-        <profile>
-            <id>production</id>
-            <properties>
-                <activatedProperties>production</activatedProperties>
-            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 

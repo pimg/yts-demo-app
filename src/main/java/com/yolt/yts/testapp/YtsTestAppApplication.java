@@ -65,8 +65,8 @@ public class YtsTestAppApplication {
         String activeProfile;
 
         if (activeProfiles.length == 0) {
-            log.warn("No active profile was set - falling back to team4 profile");
-            activeProfile = "team4";
+            log.warn("No active profile was set - falling back to sandbox profile");
+            activeProfile = "sandbox";
         } else {
             activeProfile = springEnvironment.getActiveProfiles()[0];
         }
