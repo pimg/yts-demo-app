@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -60,7 +61,7 @@ public class YtsTestAppApplication {
      * @return
      */
     @Bean
-    public EnvironmentClient selectEnvironmentClient() {
+    public EnvironmentClient selectEnvironmentClient(EnvironmentClients environmentClients) {
         String[] activeProfiles = springEnvironment.getActiveProfiles();
         String activeProfile;
 
@@ -71,7 +72,7 @@ public class YtsTestAppApplication {
             activeProfile = springEnvironment.getActiveProfiles()[0];
         }
 
-        Optional<EnvironmentClient> environmentClientOptional = EnvironmentClients.clients.stream()
+        Optional<EnvironmentClient> environmentClientOptional = environmentClients.getTestClients().stream()
                 .filter(ec -> ec.getEnvironment().name().equals(activeProfile) && ec.getClient().getClientId().equals(appProperties.getClientId()))
                 .findFirst();
         if (environmentClientOptional.isEmpty()) {

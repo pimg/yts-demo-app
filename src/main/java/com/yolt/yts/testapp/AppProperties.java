@@ -22,7 +22,10 @@ public class AppProperties {
     private int socketTimeout;
 
     private String environmentBaseUrl;
+    private String clientName;
     private UUID clientId;
+    private UUID signingRequestTokenId;
+    private UUID redirectUrlId;
 
     private boolean logRequestsResponses;
 
